@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Amada Nonna Pizzaria</title>
+    <title>Amada Nonna Pizzaria | Peça Agora</title>
     
-    <!-- Favicon dinâmico a partir da Logo fornecida -->
+    <!-- Favicon -->
     <link rel="icon" href="https://i.ibb.co/ns0z2hCH/Logo-da-Pizzaria.jpg">
 
     <!-- Google Tag Manager -->
@@ -35,134 +35,255 @@
     <!-- End Meta Pixel Code -->
 
     <style>
-        /* Variáveis de Cores (Paleta de Pizzaria: Fundo Escuro, Texto Claro, Detalhes Vermelhos) */
+        /* =========================================
+           VARIÁVEIS DE CORES E DESIGN PREMIUM
+           ========================================= */
         :root {
-            --bg-color: #111111;
-            --text-color: #F5F5F5;
-            --brand-color: #E63946;
+            /* Cores da Pizzaria no Fundo (Vermelho Escuro e Preto Premium) */
+            --bg-gradient-start: #230404; 
+            --bg-gradient-end: #0a0a0a;
+            --text-light: #FFFFFF;
+            
+            /* Cores das Plataformas */
+            --ifood-color: #EA1D2C;
+            --food99-color: #F6B32E;
+            --keeta-color: #FFB800; /* Laranja/Amarelo característico */
         }
 
-        /* Reset e Base - Foco em Performance */
+        /* =========================================
+           RESET E BASE
+           ========================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            /* Fundo com as cores da pizzaria, criando um clima "apetitoso" */
+            background: radial-gradient(circle at top, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--text-light);
             min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        /* Container Principal */
-        .container {
-            width: 100%;
-            max-width: 480px;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        /* Cabeçalho / Perfil */
-        .profile-header {
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            overflow-x: hidden;
+            padding-bottom: 50px;
         }
 
-        .profile-image-container {
-            width: 110px;
-            height: 110px;
+        .main-container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* =========================================
+           CABEÇALHO (LOGO E BIO)
+           ========================================= */
+        .header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            padding: 0 20px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .logo-wrapper {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 25px rgba(234, 29, 44, 0.4);
             overflow: hidden;
-            border: 3px solid var(--brand-color);
-            background-color: #FFFFFF; /* Garante fundo neutro se a imagem for PNG ou não cobrir tudo */
+            margin: 0 auto 15px auto;
+            background-color: #fff;
         }
 
-        .profile-image-container img {
+        .logo-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* A imagem NUNCA será cortada */
+            object-fit: contain; /* Nunca corta a logo */
         }
 
-        .profile-info h1 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .profile-info p {
-            font-size: 1rem;
-            font-weight: 400;
-            opacity: 0.8;
+        .header p {
+            font-size: 1.05rem;
+            color: #e0e0e0;
+            font-weight: 500;
+            font-style: italic;
         }
 
-        /* Links / Cards */
-        .links-container {
+        /* =========================================
+           CARROSSEL INFINITO (FOTOS DAS PIZZAS)
+           ========================================= */
+        .carousel-section {
+            width: 100vw;
+            margin-bottom: 35px;
+            overflow: hidden;
+            position: relative;
+            /* Máscara para suavizar as bordas na entrada e saída */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: calc(260px * 8 + 15px * 8); /* 8 itens totais (4 originais + 4 duplicados) */
+            animation: scroll-carousel 20s linear infinite;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-item {
+            width: 260px;
+            height: 190px;
+            margin: 0 7.5px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.1);
+        }
+
+        @keyframes scroll-carousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-260px * 4 - 15px * 4)); }
+        }
+
+        /* =========================================
+           CARDS DE PLATAFORMAS (DESIGN "FULL FODA")
+           ========================================= */
+        .links-section {
+            width: 100%;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
-        .card-link {
+        .platform-card {
             position: relative;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
-            height: 120px;
-            border-radius: 12px;
+            height: 100px;
+            border-radius: 18px;
             text-decoration: none;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.1s ease;
+            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.2s ease;
         }
 
-        /* Interação Limpa e Leve */
-        .card-link:active {
-            transform: scale(0.98);
+        /* Bordas brilhantes baseadas na marca */
+        .card-keeta { border-left: 6px solid var(--keeta-color); }
+        .card-ifood { border-left: 6px solid var(--ifood-color); }
+        .card-99food { border-left: 6px solid var(--food99-color); }
+
+        .platform-card:active {
+            transform: scale(0.96);
         }
 
-        /* Gradiente Escuro (Overlay) */
-        .card-link::before {
+        /* Imagem da Plataforma */
+        .platform-logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
+        }
+
+        .platform-logo-box img {
+            height: 35px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Título alternativo caso a imagem da plataforma não carregue perfeitamente */
+        .platform-name-fallback {
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .text-keeta { color: var(--keeta-color); }
+        .text-ifood { color: var(--ifood-color); }
+        .text-99food { color: var(--food99-color); }
+
+        /* Botão "Pedir Agora" pulsante */
+        .cta-btn {
+            z-index: 2;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #FFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: pulse-btn 2s infinite;
+        }
+
+        .btn-keeta { background-color: var(--keeta-color); color: #000; }
+        .btn-ifood { background-color: var(--ifood-color); }
+        .btn-99food { background-color: var(--food99-color); color: #000; }
+
+        @keyframes pulse-btn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Gradiente de fundo de cada card para dar contraste */
+        .platform-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%);
             z-index: 1;
         }
 
-        /* Título do Card */
-        .card-title {
-            position: relative;
-            z-index: 2;
-            color: #FFFFFF;
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-align: center;
-            width: 90%;
-            text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-        }
+        /* Imagens de fundo sutis nos cards para textura */
+        .card-keeta { background-image: url('https://i.ibb.co/RL9XCL8/Calabresa-1.png'); background-size: cover; background-position: center; }
+        .card-ifood { background-image: url('https://i.ibb.co/hRV7v0b9/Pizza-doce-limoneto-ifood.png'); background-size: cover; background-position: center; }
+        .card-99food { background-image: url('https://i.ibb.co/PZTXzSkR/Atum-1.png'); background-size: cover; background-position: center; }
 
-        /* Imagens de Fundo Específicas dos Cards */
-        .bg-keeta { background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'); }
-        .bg-ifood { background-image: url('https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'); }
-        .bg-99food { background-image: url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'); }
     </style>
 </head>
 <body>
@@ -171,53 +292,83 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <main class="container">
-        <header class="profile-header">
-            <div class="profile-image-container">
-                <img src="https://i.ibb.co/ns0z2hCH/Logo-da-Pizzaria.jpg" alt="Amada Nonna Pizzaria">
+    <div class="main-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <div class="logo-wrapper">
+                <img src="https://i.ibb.co/ns0z2hCH/Logo-da-Pizzaria.jpg" alt="Amada Nonna Pizzaria Logo">
             </div>
-            <div class="profile-info">
-                <h1>Amada Nonna Pizzaria</h1>
-                <p>A Melhor Pizza da Região!!</p>
-            </div>
+            <h1>Amada Nonna</h1>
+            <p>A Melhor Pizza da Região!! 🍕</p>
         </header>
 
-        <section class="links-container">
-            <a href="https://www.keeta-global.com/BR/en" target="_blank" class="card-link bg-keeta" onclick="trackClick('clique_keeta')">
-                <span class="card-title">Peça no Keeta</span>
-            </a>
-
-            <a href="https://www.ifood.com.br/" target="_blank" class="card-link bg-ifood" onclick="trackClick('clique_ifood')">
-                <span class="card-title">Estamos no iFood</span>
-            </a>
-
-            <a href="https://99app.com/99food/" target="_blank" class="card-link bg-99food" onclick="trackClick('clique_99food')">
-                <span class="card-title">Peça no 99Food</span>
-            </a>
+        <!-- CARROSSEL DE PIZZAS (Gera desejo instantâneo) -->
+        <section class="carousel-section">
+            <div class="carousel-track">
+                <!-- Imagens Originais -->
+                <div class="carousel-item"><img src="https://i.ibb.co/9mR8nmH8/Design-sem-nome-1.png" alt="Pizza 1"></div>
+                <div class="carousel-item"><img src="https://i.ibb.co/hRV7v0b9/Pizza-doce-limoneto-ifood.png" alt="Pizza Doce"></div>
+                <div class="carousel-item"><img src="https://i.ibb.co/RL9XCL8/Calabresa-1.png" alt="Pizza Calabresa"></div>
+                <div class="carousel-item"><img src="https://i.ibb.co/PZTXzSkR/Atum-1.png" alt="Pizza Atum"></div>
+                
+                <!-- Imagens Duplicadas para o loop infinito perfeito -->
+                <div class="carousel-item"><img src="https://i.ibb.co/9mR8nmH8/Design-sem-nome-1.png" alt="Pizza 1"></div>
+                <div class="carousel-item"><img src="https://i.ibb.co/hRV7v0b9/Pizza-doce-limoneto-ifood.png" alt="Pizza Doce"></div>
+                <div class="carousel-item"><img src="https://i.ibb.co/RL9XCL8/Calabresa-1.png" alt="Pizza Calabresa"></div>
+                <div class="carousel-item"><img src="https://i.ibb.co/PZTXzSkR/Atum-1.png" alt="Pizza Atum"></div>
+            </div>
         </section>
-    </main>
 
+        <!-- LINKS DAS PLATAFORMAS -->
+        <section class="links-section">
+            
+            <!-- KEETA -->
+            <a href="https://www.keeta-global.com/BR/en" target="_blank" class="platform-card card-keeta" onclick="trackClick('clique_keeta')">
+                <div class="platform-logo-box">
+                    <!-- Imagem da plataforma (Caso a imagem falhe, o texto fallback estilizado aparece ao lado) -->
+                    <h2 class="platform-name-fallback text-keeta">Keeta</h2>
+                </div>
+                <div class="cta-btn btn-keeta">Pedir Agora</div>
+            </a>
+
+            <!-- IFOOD -->
+            <a href="https://www.ifood.com.br/" target="_blank" class="platform-card card-ifood" onclick="trackClick('clique_ifood')">
+                <div class="platform-logo-box">
+                    <!-- Imagem oficial SVG do iFood -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ifood_logo.svg" alt="iFood Logo">
+                </div>
+                <div class="cta-btn btn-ifood">Pedir Agora</div>
+            </a>
+
+            <!-- 99FOOD -->
+            <a href="https://99app.com/99food/" target="_blank" class="platform-card card-99food" onclick="trackClick('clique_99food')">
+                <div class="platform-logo-box">
+                    <!-- Texto estilizado idêntico à marca para garantir alta performance e zero quebras -->
+                    <h2 class="platform-name-fallback text-99food">99Food</h2>
+                </div>
+                <div class="cta-btn btn-99food">Pedir Agora</div>
+            </a>
+
+        </section>
+    </div>
+
+    <!-- SCRIPT DE RASTREAMENTO UNIFICADO -->
     <script>
-        /**
-         * Função unificada de rastreamento de eventos de clique
-         * Garante envio síncrono para GTM (dataLayer) e Meta Pixel
-         */
         function trackClick(nomeDoEvento) {
             try {
-                // 1. Disparo para o Google Tag Manager
+                // 1. Google Tag Manager
                 window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': nomeDoEvento
                 });
                 
-                // 2. Disparo para o Meta Pixel
+                // 2. Meta Pixel
                 if (typeof fbq === 'function') {
                     fbq('trackCustom', nomeDoEvento);
-                } else {
-                    console.warn("Meta Pixel (fbq) não está carregado no momento do clique.");
                 }
             } catch (error) {
-                console.error("Erro na função de rastreamento:", error);
+                console.error("Erro no trackClick:", error);
             }
         }
     </script>
