@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Amada Nonna Pizzaria</title>
+    
+    <!-- Favicon dinâmico a partir da Logo fornecida -->
+    <link rel="icon" href="https://i.ibb.co/ns0z2hCH/Logo-da-Pizzaria.jpg">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','[INSERIR ID GTM]');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '[INSERIR ID META PIXEL]');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=[INSERIR ID META PIXEL]&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        /* Variáveis de Cores (Paleta de Pizzaria: Fundo Escuro, Texto Claro, Detalhes Vermelhos) */
+        :root {
+            --bg-color: #111111;
+            --text-color: #F5F5F5;
+            --brand-color: #E63946;
+        }
+
+        /* Reset e Base - Foco em Performance */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Container Principal */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Cabeçalho / Perfil */
+        .profile-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .profile-image-container {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--brand-color);
+            background-color: #FFFFFF; /* Garante fundo neutro se a imagem for PNG ou não cobrir tudo */
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* A imagem NUNCA será cortada */
+        }
+
+        .profile-info h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-info p {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* Links / Cards */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card-link {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            text-decoration: none;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.1s ease;
+        }
+
+        /* Interação Limpa e Leve */
+        .card-link:active {
+            transform: scale(0.98);
+        }
+
+        /* Gradiente Escuro (Overlay) */
+        .card-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
+            z-index: 1;
+        }
+
+        /* Título do Card */
+        .card-title {
+            position: relative;
+            z-index: 2;
+            color: #FFFFFF;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 90%;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Imagens de Fundo Específicas dos Cards */
+        .bg-keeta { background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'); }
+        .bg-ifood { background-image: url('https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'); }
+        .bg-99food { background-image: url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'); }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=[INSERIR ID GTM]"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <main class="container">
+        <header class="profile-header">
+            <div class="profile-image-container">
+                <img src="https://i.ibb.co/ns0z2hCH/Logo-da-Pizzaria.jpg" alt="Amada Nonna Pizzaria">
+            </div>
+            <div class="profile-info">
+                <h1>Amada Nonna Pizzaria</h1>
+                <p>A Melhor Pizza da Região!!</p>
+            </div>
+        </header>
+
+        <section class="links-container">
+            <a href="https://www.keeta-global.com/BR/en" target="_blank" class="card-link bg-keeta" onclick="trackClick('clique_keeta')">
+                <span class="card-title">Peça no Keeta</span>
+            </a>
+
+            <a href="https://www.ifood.com.br/" target="_blank" class="card-link bg-ifood" onclick="trackClick('clique_ifood')">
+                <span class="card-title">Estamos no iFood</span>
+            </a>
+
+            <a href="https://99app.com/99food/" target="_blank" class="card-link bg-99food" onclick="trackClick('clique_99food')">
+                <span class="card-title">Peça no 99Food</span>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        /**
+         * Função unificada de rastreamento de eventos de clique
+         * Garante envio síncrono para GTM (dataLayer) e Meta Pixel
+         */
+        function trackClick(nomeDoEvento) {
+            try {
+                // 1. Disparo para o Google Tag Manager
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': nomeDoEvento
+                });
+                
+                // 2. Disparo para o Meta Pixel
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', nomeDoEvento);
+                } else {
+                    console.warn("Meta Pixel (fbq) não está carregado no momento do clique.");
+                }
+            } catch (error) {
+                console.error("Erro na função de rastreamento:", error);
+            }
+        }
+    </script>
+</body>
+</html>
